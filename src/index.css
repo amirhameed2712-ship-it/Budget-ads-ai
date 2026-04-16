@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-bg-main: #f4f7f6;
+  --color-sidebar: #1a1c23;
+  --color-card: #ffffff;
+  --color-text-main: #2d3436;
+  --color-text-muted: #636e72;
+  --color-accent: #0984e3;
+  --color-success: #00b894;
+  --color-warning: #fdcb6e;
+  --color-border-ui: #dfe6e9;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-main text-text-main font-sans antialiased;
+  }
+}
+
+/* Custom platform pills from theme */
+.platform-pill {
+  @apply px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider inline-block;
+}
+.pill-ig { @apply bg-red-100 text-red-500; }
+.pill-fb { @apply bg-blue-100 text-blue-500; }
+.pill-tt { @apply bg-gray-100 text-gray-900; }
+.pill-li { @apply bg-blue-50 text-blue-800; }
+.pill-tw { @apply bg-sky-50 text-sky-500; }
+
+/* Status indicators */
+.status-indicator {
+  @apply inline-block w-2 h-2 rounded-full mr-2;
+}
+.status-active { @apply bg-success; }
+.status-draft { @apply bg-warning; }
+.status-paused { @apply bg-text-muted; }
+

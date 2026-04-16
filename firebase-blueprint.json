@@ -1,0 +1,57 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Stores user preferences and basic info.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The unique ID of the user." },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid"]
+    },
+    "Campaign": {
+      "title": "Campaign",
+      "description": "An ad campaign created by the user.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "platform": { "type": "string", "enum": ["Instagram", "Facebook", "TikTok", "LinkedIn", "Twitter/X"] },
+        "budget": { "type": "number" },
+        "targetAudience": { "type": "string" },
+        "adCopy": { "type": "string" },
+        "strategy": { "type": "string", "description": "AI generated budget allocation strategy" },
+        "targetingStrategies": { 
+          "type": "array", 
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "demographics": { "type": "string" },
+              "interests": { "type": "string" },
+              "behaviors": { "type": "string" }
+            }
+          }
+        },
+        "abTestPlan": { "type": "string" },
+        "status": { "type": "string", "enum": ["Draft", "Active", "Paused", "Completed"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "platform", "budget"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile data."
+    },
+    "/campaigns/{campaignId}": {
+      "schema": "Campaign",
+      "description": "User's ad campaigns."
+    }
+  }
+}
